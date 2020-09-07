@@ -1,0 +1,30 @@
+{
+  "editor.suggestSelection": "first",
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // 不显示在文件目录
+  "files.exclude": {
+    "**/node_modules": false
+  },
+  // 插入空白时使用空格
+  "editor.insertSpaces": true,
+  // 粘贴时格式化
+  "editor.formatOnPaste": false,
+  // 保存时格式化
+  "editor.formatOnSave": true,
+  // 展示错误信息
+  "editor.codeActionsOnSave": {
+    // 自动修复错误格式
+    "source.fixAll.eslint": true
+  },
+  // 代码折叠高亮
+  "editor.semanticHighlighting.enabled": true,
+  // 文件移动时默认更新文件路径
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "git.autofetch": true,
+}

@@ -1,0 +1,10 @@
+# 要匹配的文件模式 属性1 属性2, 如 *.js text eol=lf
+*       text=auto
+*.txt		text
+
+# 对于图片资源标记为非文本
+*.jpg  -text
+*.png  -text
+
+# 开启所有
+* eol=lf
