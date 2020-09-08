@@ -1,7 +1,20 @@
 export const RENDER_TO_DOM = Symbol('render to dom');
 
 /**
- * 元素
+ * 文本节点类
+ */
+export class TextWrapper {
+  constructor(context) {
+    this.root = document.createTextNode(context);
+  }
+  [RENDER_TO_DOM](range) {
+    range.deleteContents();
+    range.insertNode(this.root);
+  }
+}
+
+/**
+ * 元素节点类
  */
 export class ElementWrapper {
   constructor(type) {
@@ -11,7 +24,6 @@ export class ElementWrapper {
   // html 对象的属性绑定
   setAttribute(name, value) {
     if (name.match(/^on([\s\S]+)$/)) {
-      debugger;
       // 绑定事件
       this.root.addEventListener(
         RegExp.$1.replace(/^[\s\S]/, (c) => c.toLowerCase()),
@@ -38,22 +50,9 @@ export class ElementWrapper {
 }
 
 /**
- * 文本
+ * 自定义组件基类
  */
-export class TextWrapper {
-  constructor(context) {
-    this.root = document.createTextNode(context);
-  }
-  [RENDER_TO_DOM](range) {
-    range.deleteContents();
-    range.insertNode(this.root);
-  }
-}
-
-/**
- * 自定义组件
- */
-export default class Component {
+export class Component {
   constructor() {
     // 存放传递从父组件接收的值 {}
     this.props = Object.create(null);
