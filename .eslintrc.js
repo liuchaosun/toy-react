@@ -24,7 +24,7 @@ module.exports = {
   rules: {
     eqeqeq: [2, 'always'],
     'no-unused-vars': 1,
-    // 'no-debugger': 1,
+    'no-debugger': 1,
     // 'no-console': 1,
     // 对象，换行后字段末尾自动加逗号
     'comma-dangle': [2, 'only-multiline'],

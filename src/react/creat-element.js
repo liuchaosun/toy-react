@@ -1,4 +1,4 @@
-import { TextWrapper, ElementWrapper } from './wrapper';
+import { TextWrapper, ElementWrapper } from './component';
 
 /**
  * 生成 dom 结构的函数
@@ -20,12 +20,19 @@ function creatElement(type, attributes, ...children) {
     ele.setAttribute(attr, attributes[attr]);
   }
 
-  // 递归插入子节点
+  /**
+   * 递归插入子节点
+   * @param {*} children
+   */
   let insertChildren = (children) => {
     for (let child of children) {
       // 子节点可能是文本节点
       if (typeof child === 'string') {
         child = new TextWrapper(child);
+      }
+      // 当传入的child 是 props 的属性时,初始为空
+      if (child === null) {
+        continue;
       }
       if (typeof child === 'object' && child instanceof Array) {
         insertChildren(child);
