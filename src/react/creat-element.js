@@ -26,13 +26,13 @@ function creatElement(type, attributes, ...children) {
    */
   let insertChildren = (children) => {
     for (let child of children) {
-      // 子节点可能是文本节点
-      if (typeof child === 'string') {
-        child = new TextWrapper(child);
-      }
-      // 当传入的child 是 props 的属性时,初始为空
+      // 子组件为空时跳过
       if (child === null) {
         continue;
+      }
+      // 子节点是文本节点
+      if (typeof child === 'string') {
+        child = new TextWrapper(child);
       }
       if (typeof child === 'object' && child instanceof Array) {
         insertChildren(child);

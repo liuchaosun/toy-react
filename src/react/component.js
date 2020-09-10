@@ -1,5 +1,4 @@
-export const RENDER_TO_DOM = Symbol('render to dom');
-
+import { RENDER_TO_DOM } from './core';
 /**
  * 文本节点类
  */
@@ -15,10 +14,10 @@ export class TextWrapper {
 
 /**
  * 元素节点类
+ * 初始化dom元素节点对象最后挂载到节点
  */
 export class ElementWrapper {
   constructor(type) {
-    // 初始化dom元素节点对象 挂载到 根节点 root
     this.root = document.createElement(type);
   }
   // html 对象的属性绑定

@@ -1,6 +1,7 @@
-import { RENDER_TO_DOM } from './component';
+import { RENDER_TO_DOM } from './core';
+
 export default function (component, parentElement) {
-  // 清空节点下的内容
+  // 清空parentElement节点下的内容
   let range = document.createRange();
   range.setStart(parentElement, 0);
   range.setEnd(parentElement, parentElement.childNodes.length);
