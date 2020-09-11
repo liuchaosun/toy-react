@@ -1,4 +1,4 @@
-import { TextWrapper, ElementWrapper } from './component';
+import { TextWrapper, ElementWrapper } from './module/wrapper-component';
 
 /**
  * 生成 dom 结构的函数

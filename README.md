@@ -1,6 +1,6 @@
 # toy-react
 
-自己的动手实现一个玩具版的 React。
+自己动手实现一个玩具版的 React。
 
 ## 一些问题
 
@@ -37,7 +37,7 @@
 
 ### 配置 webpack + babel
 
-需要明白的一个基础知识是：React 框架不被浏览器原生支持，所以源码必须要经过事先编译后，再进行生产部署，我们使用常见的构建工具 webpack，配合目前最流行的代码转译工具 babel 实现编译。
+需要明白的一个基础知识是：React 框架不被浏览器原生支持，所以源码必须要经过事先编译后，再进行生产部署，我们使用常见的构建工具 webpack，配合目前最流行的代码转译工具 babel 实现编译(这里的编译更像是翻译)。
 
 安装 webpack
 
@@ -136,3 +136,38 @@ React 中默认大写开头的元素是自定义组件，所以 div 和 Div 是�
 ### 渲染函数
 
 通过一个渲染函数将组件中的内容真正的添加到 html 的元素中，具体实现见[render.js](./src/react/render.js)
+
+### 真实节点渲染方式（中间过程）
+
+JSX 语法被解析后，通过调用 creatElement 函数生成一个对象。 creatElement 函数调用时，如果传入的第一个参数的类型是 'div' 时，通过 new ElementWrapper() 调用构造函数然后由 document.createElement(type) 生成一个空的 dom 节点。如果子节点传入的是字符串文字，通过 new TextWrapper() 调用构造函数然后由 document.createTextNode() 生成一个文本节点，最后递归的方式生成一个带有层级嵌套的 dom 节点，赋值给声明的对象。
+
+```xml
+<div>
+  <div></div>
+  123
+</div>
+```
+
+最后执行 render 方法，向 html 模板中的真实节点中插入该节点，渲染出页面。
+
+### 添加生命周期
+
+借助 Range Api 对目标位置的 Dom 做添加和删除操作，在 Component 组件上添加 setState 函数支持，在子组件中通过调用 setState 修改数据，然后重新触发 render。
+
+只有自定义组件有生命周期，所以每个自定义组件初始化的时候都会创建一个 Range 并保存下来。
+
+元素组件只有在添加子元素的时候会创建一个 Range 用来存储，渲染后被收回。
+
+### 收集属性
+
+setAttribute
+
+### 收集子节点
+
+appendChild
+
+### 虚拟 Dom Tree 构建
+
+### 延迟渲染
+
+### Diff 算法

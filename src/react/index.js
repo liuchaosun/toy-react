@@ -1,9 +1,11 @@
-import _render from './render';
-import _creatElement from './creat-element';
-import { Component } from './component';
+import render from './render';
+import creatElement from './creat-element';
+import { BaseComponent } from './module/base-component';
+
+export const Component = BaseComponent;
 
 export default {
+  render,
   Component,
-  render: _render,
-  creatElement: _creatElement,
+  creatElement,
 };
