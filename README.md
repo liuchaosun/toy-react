@@ -140,11 +140,13 @@ React 中默认大写开头的元素是自定义组件，所以 div 和 Div 是�
 
 通过一个渲染函数将组件中的内容真正的添加到 html 的元素中，具体实现见[render.js](./src/react/render.js)
 
-因此你就可以理解为什么只有在 ElementWrapper 和 TextWrapper 的 \[RENDER_TO_DOM\] 函数中，才有 document.createElement() 和 document.createeTextNode()，这样生成真正 Dom 结构的东西。
+因此你就可以理解为什么只有在 ElementWrapper 和 TextWrapper 的 \[RENDER_TO_DOM\] 函数中，才有 document.createElement() 和 document.createTextNode()，这样生成真正 Dom 结构的东西。
 
 ### 真实节点渲染方式（中间过程，最后会被虚拟 Dom 方式取代）
 
-JSX 语法被解析后，通过调用 createElement 函数生成一个对象。 createElement 函数调用时，如果传入的第一个参数的类型是 'div' 时，通过 new ElementWrapper() 调用构造函数然后由 document.createElement(type) 生成一个空的 dom 节点。如果子节点传入的是字符串文字，通过 new TextWrapper() 调用构造函数然后由 document.createeTextNode() 生成一个文本节点，最后递归的方式生成一个带有层级嵌套的 dom 节点，赋值给声明的对象。
+JSX 语法被解析后，通过调用 createElement 函数生成一个对象。 createElement 函数调用时，如果传入的第一个参数的类型是 'div' 时，通过 new ElementWrapper() 调用构造函数然后由 document.createElement(type) 生成一个空的 dom 节点。
+
+如果子节点传入的是字符串文字，通过 new TextWrapper() 调用构造函数然后由 document.createTextNode() 生成一个文本节点，最后递归的方式生成一个带有层级嵌套的 dom 节点，赋值给声明的对象。
 
 ```xml
 <div>
