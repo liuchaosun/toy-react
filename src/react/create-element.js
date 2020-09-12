@@ -6,7 +6,7 @@ import { TextWrapper, ElementWrapper } from './module/wrapper-component';
  * @param {*} attributes 组件属性
  * @param  {...any} children 子组件
  */
-function creatElement(type, attributes, ...children) {
+function createElement(type, attributes, ...children) {
   let ele;
   // 原生的元素传进来的是元素名 如 div 传入 'div'
   if (typeof type === 'string') {
@@ -17,7 +17,7 @@ function creatElement(type, attributes, ...children) {
   }
 
   for (let attr in attributes) {
-    ele.setAttribute(attr, attributes[attr]);
+    ele.collectAttribute(attr, attributes[attr]);
   }
 
   /**
@@ -37,7 +37,7 @@ function creatElement(type, attributes, ...children) {
       if (typeof child === 'object' && child instanceof Array) {
         insertChildren(child);
       } else {
-        ele.appendChild(child);
+        ele.collectChild(child);
       }
     }
   };
@@ -49,4 +49,4 @@ function creatElement(type, attributes, ...children) {
   return ele;
 }
 
-export default creatElement;
+export default createElement;

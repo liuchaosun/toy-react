@@ -1,4 +1,4 @@
-import React from './react';
+import React, { Component } from './react';
 
 class Square extends React.Component {
   render() {
@@ -112,7 +112,6 @@ class Game extends React.Component {
     );
   }
 }
-
 React.render(<Game />, document.getElementById('root'));
 
 function calculateWinner(squares) {

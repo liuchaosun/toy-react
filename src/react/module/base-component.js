@@ -12,11 +12,11 @@ export class BaseComponent {
     this._range = null;
   }
   // 属性收集
-  setAttribute(name, value) {
+  collectAttribute(name, value) {
     this.props[name] = value;
   }
   // 子节点收集
-  appendChild(child) {
+  collectChild(child) {
     this.children.push(child);
   }
   // 虚拟dom
@@ -26,7 +26,7 @@ export class BaseComponent {
   // 延迟渲染 Dom Tree ，保存 当前的 range 和 vDom
   [RENDER_TO_DOM](range) {
     this._range = range;
-    this._vDom = this.vDom; // 这里会触发 render
+    this._vDom = this.vDom; // 这里会触发 render得到一棵树
     this._vDom[RENDER_TO_DOM](range);
   }
   /**

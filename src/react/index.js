@@ -1,5 +1,5 @@
 import render from './render';
-import creatElement from './creat-element';
+import createElement from './create-element';
 import { BaseComponent } from './module/base-component';
 
 export const Component = BaseComponent;
@@ -7,5 +7,5 @@ export const Component = BaseComponent;
 export default {
   render,
   Component,
-  creatElement,
+  createElement,
 };
